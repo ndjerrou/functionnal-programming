@@ -25,3 +25,9 @@ book = {city: 'Paris'} // const prevents reassignment
 // state changes ? react can trigger a new rerender
 
 // 3 - Concurrency, we can run in parallel multiple instances of the function 
+
+// Some immutable libraries
+
+// Immutable --> Facebook
+// Immer ---> Mobx
+// Mori
