@@ -1,37 +1,57 @@
-// Updating objects
+const user = {
+  //don't modify it - we want this object to be immutable
+  firstName: "Patrick",
+  age: 30,
+  address: {
+    city: "Paris",
+    street: "1 rue des tulipes",
+  },
+};
 
-const person = {name: 'John', age: 40,  // don't modify it !!
- address:{
-    city: 'Paris',
-    street: '1 rue des tulipes'
-}} 
+// To avoid (cf below)
 
-// 1 - Spread operator 
+// const updated = user;
+// updated.firstName = "Bob";
 
-const updated = {...person, name: 'Nicolas', age: 41}
-// console.log(updated)
-// console.log(person)
+// console.log("user = ", user);
+// console.log("updated = ", updated);
 
-// 2 - assign method
+/////////  Using the spread operator ...
+const updated = { ...user, age: 31, gender: "M" };
+// console.log(updated);
+// console.log("user = ", user);
 
-const newPerson = Object.assign({}, person, {name: 'Patrick', age: 50})
-// console.log(newPerson)
-// console.log(person)
+/////////  Using the assign method ...
 
-// !!! shallow copy 
+const userUpdated = Object.assign({}, user, { age: 31 });
+// console.log(userUpdated);
+// console.log(user);
 
-// let's add an adress property on person
-// updated.address.city = 'Lille'
-// console.log(updated)
-// and the original person...
-// console.log(person)
+const unObjet = {}; // in memory : 100
+const updatedUser = user; // in memory : updatedUser pointe vers la même ref. que user
 
-// fixing it...deep copy
-const updatedNicolas = {...updated, address: {
-    city: 'Lille',
-    street: '1 rue des tulipes'
-}}
+updatedUser.firstName = "Bob";
 
-console.log(updatedNicolas)
-console.log(updated)
+// console.log("user = ", user);
+// console.log("updatedUser = ", updatedUser);
+// console.log(updatedUser === user);
 
+/// Problems with shallow copy
+
+//wrong !!
+
+// updated1.address.city = "Lille";
+
+//correct below :
+
+const updated1 = {
+  ...user,
+  firstName: "Rachid",
+  address: { ...user.address, city: "Lille" }, // we've just done a deep copy
+};
+
+updated1.statusMarital = "Married";
+
+console.log(updated1);
+console.log(user);
+console.log(updated1 === user); // ech object points to it's own ref

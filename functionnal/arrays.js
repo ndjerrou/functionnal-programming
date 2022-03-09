@@ -1,51 +1,23 @@
-// How to get immuability with arrays ?
+const numbers = [1, 2, 3, 4, 5];
 
-const numbers = [1, 2, 3]
-
-// adding elements : début, fin, milieu ?
-
-//at the end
-
-// const added = [...numbers, 4]
-// console.log(added)
-// console.log(numbers)
+// Add an element to multiple positions :
 
 // at the beginning
+let added = [0, ...numbers];
 
-// const added = [0, ...numbers]
-// console.log(added)
-// console.log(numbers)
+// at the end
+added = [...numbers, 4];
 
-// at an index position ? 
-const idx = numbers.indexOf(2)
+// at a particular position : after the 4th element
+const idx = numbers.indexOf(4);
 
-const added = [
-    ...numbers.slice(0, idx),
-    1.5,
-    ...numbers.slice(idx)
-]
+added = [...numbers.slice(0, idx + 1), 4.5, ...numbers.slice(idx + 1)];
 
-// console.log(added)
+console.log(added);
+console.log(numbers);
 
+// Remove an element inside the array
 
+// Update an element inside the array
 
-// removing elements ?
-const removed = numbers.filter(n=>n!==3)
-// console.log(removed)
-// console.log(numbers)
-
-
-
-// updating elements ?
-// const updated = numbers.map(n => {
-//     if (n === 2){
-//         return 20
-//     }
-//     else{
-//         return n
-//     }
-// })
-const updated = numbers.map(n => n === 2 ? 20 : n)
-
-console.log(updated)
-console.log(numbers)
+[].splice();
